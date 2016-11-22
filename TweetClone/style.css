@@ -1,0 +1,31 @@
+body {
+    background: rgb(244,248,249);
+}
+
+.tweet {
+    background: rgb(255, 255, 255);
+    border: rgb(225, 232, 237);
+    user_name: rgb(0, 0, 0);
+    user_account: rgb(104, 109, 129);
+    text: rgb(0, 0, 0);
+    date: rgb(101, 116, 127);
+    bottom text color: rgb(105, 120, 130);
+    follow button: rgb(85, 172, 238);
+    font-family: "helvetia";
+    width: 500px;
+    height: 150px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-left: 10px;
+    margin-left: 30px;
+    margin-top: 30px;
+
+}
+.perfil{
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+  float: left;
+  padding-right: 30px;
+}
