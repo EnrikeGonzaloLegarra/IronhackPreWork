@@ -32,11 +32,13 @@ Debe deternes y reportar que hay un obstaculo.
 */
 
 
+/*A -> Crea un objeto para representar el rover que tiene los atributos de posicion y direccion*/
 
 var myRover = {
   position: [0,0],
   direction: 'N'
 };
+
 
 function goForward(rover) {
   switch(rover.direction) {
