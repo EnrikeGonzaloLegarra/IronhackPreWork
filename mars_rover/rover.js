@@ -29,8 +29,6 @@ El rover nunca puede salir de la casilla 10x10
 BONUS
 Coloca algunos obstaculos en la cuadricula 10x10, el rover no puede cruzarlos.
 Debe deternes y reportar que hay un obstaculo.
-
-
 */
 
 
