@@ -38,7 +38,12 @@ var myRover = {
   position: [0,0],
   direction: 'N'
 };
+function VeriDire(direcc){
+  var direccion = getElementById('textDire');
+  if(direccion != N ){
 
+  }
+}
 
 function goForward(rover) {
   switch(rover.direction) {
