@@ -1,0 +1,74 @@
+body {
+    background: rgb(244,248,249);
+      font-family: Helvetica;
+
+}
+
+.button{
+  font-size: 30px;
+  float: right;
+  font-weight: bold;
+  margin-right: 40px;
+  width: 21%;
+  height: 60px;
+  background-color: rgb(255,255,255);
+  border-radius:10px;
+  border-style: solid;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-color: rgb(85, 172, 238);
+  color: rgb(85, 172, 238);
+
+}
+
+
+.tweet {
+    background: rgb(255, 255, 255);
+    border: rgb(225, 232, 237);
+    text: rgb(0, 0, 0);
+    width: 75%;
+    height: 75%;
+    border-radius: 10px;
+    border-style: solid;
+    padding-top: 40px;
+    padding-left: 30px;
+    margin-left: 30px;
+    margin-top: 30px;
+
+}
+.perfil{
+  margin-left: 10px;
+  float: left;
+  padding-right: 30px;
+}
+.accLogo{
+  color: rgb(0, 0, 0);
+  font-size: 35px;
+  font-weight: bold;
+}
+.accArroba{
+  color: rgb(104, 109, 129);
+  font-size: 28px;
+}
+
+.retweetClass{
+  font-size: 24px;
+  margin-left: 10px;
+  color: rgb(104, 109, 129);
+  margin: 10px;
+  padding-right: 10px;
+}
+
+.cuerpo p{
+  padding-left: 10px;
+  line-height: 20px;
+}
+
+#primeraFila{
+  font-size: 25px;
+}
+#date{
+  font-size: 22px;
+  color: rgb(101, 116, 127);
+}
