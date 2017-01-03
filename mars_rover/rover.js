@@ -1,13 +1,4 @@
 /*
-El rover tendra coordenadas de punto inicial (x,y)(es decir)
-El rover tendra una direccion inicial(N,S,E,W)
-El rover esta en una rejilla 10x10;
-Implementa comandos que van hacia delante y hacia atras(f,b)
-Implementa comandos que van hacia la izquierda o hacia la derecha(l,r)
-El robot solo cambia la direccion a la que se enfrenta cuando el usuario establece este comando.
-No se movera automaticamente a la derecha o izkierda
-Para hacer que cambie su posicion, el usuario necesita especificar el cambio de direccion y luego el movimiento real
-
 Ejercicio 1
 A -> Crea un objeto para representar el rover que tiene los atributos de posicion y direccion
 
@@ -34,16 +25,30 @@ Debe deternes y reportar que hay un obstaculo.
 
 /*A -> Crea un objeto para representar el rover que tiene los atributos de posicion y direccion*/
 
-var myRover = {
-  position: [0,0],
-  direction: 'N'
-};
-function VeriDire(direcc){
-  var direccion = getElementById('textDire');
-  if(direccion != N ){
+var board = [
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+  ['0','0','0','0','0','0','0','0','0','0'],
+];
 
-  }
+function Rover(nameRover,position1,position2,direction) {
+  this.nameRover = nameRover;
+  this.position = [position1,position2];
+  this.direction = direction;
 }
+
+var Rover1 = new Rover ('Rover 1',5,3,'W');
+console.log("Loading Info....Starting Rover");
+console.log("Name :" + Rover1.nameRover);
+console.log("Position :" + Rover1.position);
+console.log("Direction :" + Rover1.direction);
 
 function goForward(rover) {
   switch(rover.direction) {
@@ -60,8 +65,60 @@ function goForward(rover) {
       rover.position[1]--;
       break;
   }
-
-  console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
+  console.log("goFoward New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
 }
+function goBack(rover){
+  switch (rover.direction) {
+    case 'N':
+      rover.position[0]--;
+      break;
+    case 'E':
+      rover.position[1]--;
+      break;
+    case 'S':
+      rover.position[0]++;
+      break;
+    case 'W':
+      rover.position[1]++;
+      break;
+  }
+  console.log("goBack New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
+}
+function goRigth(rover){
+  switch (rover.direction) {
+    case 'N':
+      rover.position[0]++;
+      break;
+    case 'E':
+      rover.position[1]++;
+      break;
+    case 'S':
+      rover.position[0]--;
+      break;
+    case 'W':
+      rover.position[1]--;
 
-goForward(myRover);
+      break;
+  }
+  console.log("goRigth New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
+}
+function goLeft(rover){
+  switch (rover.direction) {
+    case 'N':
+      rover.position[0]--;
+      break;
+    case 'E':
+      rover.position[1]--;
+      break;
+    case 'S':
+      rover.position[0]++;
+      break;
+    case 'W':
+      rover.position[1]++;
+
+      break;
+  }
+  console.log("goLeft New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
+}
+//goForward(Rover1);
+goLeft(Rover1);
