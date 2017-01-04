@@ -23,9 +23,7 @@ Debe deternes y reportar que hay un obstaculo.
 */
 
 
-/*A -> Crea un objeto para representar el rover que tiene los atributos de posicion y direccion*/
-
-var board = [
+var planet = [
   ['0','0','0','0','0','0','0','0','0','0'],
   ['0','0','0','0','0','0','0','0','0','0'],
   ['0','0','0','0','0','0','0','0','0','0'],
@@ -44,11 +42,21 @@ function Rover(nameRover,position1,position2,direction) {
   this.direction = direction;
 }
 
+
 var Rover1 = new Rover ('Rover 1',5,3,'W');
-console.log("Loading Info....Starting Rover");
+console.log("Loading Last Info....");
 console.log("Name :" + Rover1.nameRover);
 console.log("Position :" + Rover1.position);
 console.log("Direction :" + Rover1.direction);
+
+function startRover (Rover){
+  planet[Rover1.position[0]][Rover1.position[1]]= Rover;
+  console.log("Wait Please....Rover waking up");
+  console.log('Initial ' + Rover1.nameRover + ' Position: ['+ Rover1.position[0] + ', ' + Rover1.position[1] + '] ' + 'Direction: ' + Rover1.direction );
+}
+startRover(Rover1);
+
+
 
 function goForward(rover) {
   switch(rover.direction) {
@@ -121,4 +129,4 @@ function goLeft(rover){
   console.log("goLeft New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
 }
 //goForward(Rover1);
-goLeft(Rover1);
+//goLeft(Rover1);
