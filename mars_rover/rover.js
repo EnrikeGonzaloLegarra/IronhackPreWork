@@ -1,132 +1,218 @@
-/*
-Ejercicio 1
-A -> Crea un objeto para representar el rover que tiene los atributos de posicion y direccion
-
-B -> Crea un array usando (Bidimensional)
-
-C -> Crea funciones  para los distintos comandos.
-
-D -> Trate de llamar a algunas de estas funciones y mostrar la nueva posicion del rover.
-
-Ejercicio 2
-Queremos poder enviar una serie de comandos del rover y ejecutarlos en secuencia.
-Enviaremos una serie de comandos de caracteres, que pueden incluir.
-F -> Adelante
-B -> Atras
-R -> Derecha
-L -> izquierda
-El rover nunca puede salir de la casilla 10x10
-
-BONUS
-Coloca algunos obstaculos en la cuadricula 10x10, el rover no puede cruzarlos.
-Debe deternes y reportar que hay un obstaculo.
-*/
 
 
 var planet = [
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
-  ['0','0','0','0','0','0','0','0','0','0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+    ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
 ];
 
-function Rover(nameRover,position1,position2,direction) {
-  this.nameRover = nameRover;
-  this.position = [position1,position2];
-  this.direction = direction;
+function Rover(nameRover, position1, position2, direction) {
+    this.nameRover = nameRover;
+    this.position = [position1, position2];
+    this.direction = direction;
+}
+
+function obsta(x, y) {
+    planet[x][y] = "1";
 }
 
 
-var Rover1 = new Rover ('Rover 1',5,3,'W');
-console.log("Loading Last Info....");
-console.log("Name :" + Rover1.nameRover);
-console.log("Position :" + Rover1.position);
-console.log("Direction :" + Rover1.direction);
+var Rover1 = new Rover('Rover 1', 1, 1, 'N');
+var Rover2 = new Rover ('Rover 2',4,8,'S');
 
-function startRover (Rover){
-  planet[Rover1.position[0]][Rover1.position[1]]= Rover;
-  console.log("Wait Please....Rover waking up");
-  console.log('Initial ' + Rover1.nameRover + ' Position: ['+ Rover1.position[0] + ', ' + Rover1.position[1] + '] ' + 'Direction: ' + Rover1.direction );
+console.log("Loading Last Info....");
+console.log("Name :" + Rover.nameRover);
+console.log("Position :" + Rover.position);
+console.log("Direction :" + Rover.direction);
+
+function startRover(Rover) {
+    planet[Rover.position[0] - 1][Rover.position[1] - 1] = Rover.nameRover + " -> "  + Rover.direction;
+    console.log("Wait Please....Rover waking up");
+    console.log('Initial ' + Rover.nameRover + ' Position: [' + Rover.position[0] + ', ' + Rover.position[1] + '] ' + 'Direction: ' + Rover.direction);
 }
 startRover(Rover1);
+obsta(5, 6);
+startRover(Rover2);
 
+function seePlanet(planet) {
+    for (i = 0; i < planet.length; i++) {
+        console.log(planet[i]);
+    }
+}
+seePlanet(planet);
 
 
 function goForward(rover) {
-  switch(rover.direction) {
-    case 'N':
-      rover.position[0]++;
-      break;
-    case 'E':
-      rover.position[1]++;
-      break;
-    case 'S':
-      rover.position[0]--;
-      break;
-    case 'W':
-      rover.position[1]--;
-      break;
-  }
-  console.log("goFoward New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
-}
-function goBack(rover){
-  switch (rover.direction) {
-    case 'N':
-      rover.position[0]--;
-      break;
-    case 'E':
-      rover.position[1]--;
-      break;
-    case 'S':
-      rover.position[0]++;
-      break;
-    case 'W':
-      rover.position[1]++;
-      break;
-  }
-  console.log("goBack New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
-}
-function goRigth(rover){
-  switch (rover.direction) {
-    case 'N':
-      rover.position[0]++;
-      break;
-    case 'E':
-      rover.position[1]++;
-      break;
-    case 'S':
-      rover.position[0]--;
-      break;
-    case 'W':
-      rover.position[1]--;
+    planet[rover.position[0] - 1][rover.position[1] - 1] = "0";
+    switch (rover.direction) {
+        case 'N':
+            if ((rover.position[0] - 1 > 0)) {
+                rover.position[0]--;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+            } else {
+                rover.position[0] = rover.position[0] = 10;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+            }
 
-      break;
-  }
-  console.log("goRigth New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
-}
-function goLeft(rover){
-  switch (rover.direction) {
-    case 'N':
-      rover.position[0]--;
-      break;
-    case 'E':
-      rover.position[1]--;
-      break;
-    case 'S':
-      rover.position[0]++;
-      break;
-    case 'W':
-      rover.position[1]++;
+            break;
+        case 'E':
+            if (rover.position[1] - 1 < 9) {
+                rover.position[1]++;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
 
-      break;
-  }
-  console.log("goLeft New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
+            } else {
+                rover.position[1] = rover.position[1] = 1;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            }
+            break;
+        case 'S':
+            if (rover.position[0] - 1 < 9) {
+                rover.position[0]++;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " --> " + rover.direction;
+            } else {
+                rover.position[0] = rover.position[0] = 1;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " --> " + rover.direction;
+
+            }
+            break;
+        case 'W':
+            if (rover.position[1] - 1 > 0) {
+                rover.position[1]--;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " --> " + rover.direction;
+            } else {
+                rover.position[1] = rover.position[1] = 10;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " --> " + rover.direction;
+
+            }
+            break;
+    }
+    console.log("Go Foward " + rover.nameRover + " ---> " + rover.position[0] + ", " + rover.position[1] + " " + rover.direction);
+    console.log("-----------");
+
 }
-//goForward(Rover1);
-//goLeft(Rover1);
+
+function goBack(rover) {
+    planet[rover.position[0] - 1][rover.position[1] - 1] = "0";
+    switch (rover.direction) {
+        case 'N':
+
+            if (rover.position[0] - 1 < 9) {
+                rover.position[0]++;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            } else {
+                rover.position[0] = rover.position[0] = 1;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            }
+            break;
+
+        case 'E':
+            if (rover.position[1] - 1 > 0) {
+                rover.position[1]--;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            } else {
+                rover.position[1] = rover.position[1] = 10;
+                  planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+            }
+            break;
+        case 'S':
+            if (rover.position[0] - 1 > 0) {
+                rover.position[0]--;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            } else {
+                rover.position[0] = rover.position[0] = 10;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            }
+            break;
+        case 'W':
+            if (rover.position[1] - 1 < 9) {
+                rover.position[1]++;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            } else {
+                rover.position[1] = rover.position[1] = 1;
+                planet[rover.position[0] - 1][rover.position[1] - 1] = rover.nameRover + " -> " + rover.direction;
+
+            }
+
+            break;
+    }
+
+    console.log("Go Back " + rover.nameRover + " ---> " + rover.position[0] + ", " + rover.position[1] + "  " + rover.direction + "]");
+}
+
+function goRigth(rover) {
+    switch (rover.direction) {
+        case 'N':
+            rover.direction = 'E';
+            break;
+        case 'E':
+            rover.direction = 'S';
+            break;
+        case 'S':
+            rover.direction = 'W';
+            break;
+        case 'W':
+            rover.direction = 'N';
+            break;
+    }
+    console.log("goRigth New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + " " + rover.direction + "]");
+}
+
+function goLeft(rover) {
+    switch (rover.direction) {
+        case 'N':
+            rover.direction = 'W';
+            break;
+        case 'E':
+            rover.direction = 'N';
+            break;
+        case 'S':
+            rover.direction = 'E';
+            break;
+        case 'W':
+            rover.direction = 'S';
+            break;
+    }
+    console.log("goLeft New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + " " + rover.direction + "]");
+}
+
+function moveRover(instructions,planet,rover) {
+
+    for (i = 0; i < instructions.length; i++) {
+        if (instructions[i] == 'f') {
+            console.log(instructions[i] + ' -> foward');
+            goForward(rover);
+
+
+        } else if (instructions[i] == 'b') {
+            console.log(instructions[i] + ' -> back');
+            goBack(rover);
+        } else if (instructions[i] == 'l') {
+            console.log(instructions[i] + ' -> left');
+            goLeft(rover);
+
+
+        } else if (instructions[i] == 'r') {
+            console.log(instructions[i] + ' -> rigth');
+            goRigth(rover);
+
+        } else {
+            console.log('Error instructions');
+        }
+    }
+    seePlanet(planet);
+}
+moveRover("fffj",planet,Rover1);
